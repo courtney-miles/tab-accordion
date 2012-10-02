@@ -1,0 +1,4 @@
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.microugly.com/tabaccordian" version="1.0">
+  <name short="TabAccordian">Tab Accordian</name>
+  <description>This widget will automatically exapand active tab groups and contract inactive ones... like an accordian!!!</description>
+</widget>
