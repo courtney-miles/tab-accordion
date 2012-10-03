@@ -16,9 +16,7 @@ opera.extension.tabs.onfocus = function(e) {
 
 opera.extension.tabs.oncreate = function(e) {
     var sel = opera.extension.tabs.getSelected();
-    window.opera.postError(sel.id);
-    window.opera.postError(lastSelected.id);
-    window.opera.postError(e.tab.id);
+
     // if the selected tab is the created tab, the tab is being opened in the foreground, so use the last selected tab
     if (sel.id == e.tab.id)
         sel = lastSelected; // lastSelected would need to be maintained elsewhere
