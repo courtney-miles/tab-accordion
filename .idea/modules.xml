@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tab-accordian.iml" filepath="$PROJECT_DIR$/.idea/tab-accordian.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tab-accordion.iml" filepath="$PROJECT_DIR$/.idea/tab-accordion.iml" />
     </modules>
   </component>
 </project>
