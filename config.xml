@@ -1,6 +1,11 @@
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.microugly.com/tabaccordion" version="1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.milesasylum.com/tab-accordion" version="1.0.0">
     <name short="tab-accordion">Tab Accordion</name>
-    <description>This widget will automatically expand active tab groups and contract inactive ones... like an accordion!!!</description>
+    <description>This widget automatically expands active tab groups and contracts inactive ones... like an accordion!!!</description>
     <author href="https://github.com/courtney-miles/">Courtney Miles</author>
+    <icon src="icons/16_widget_icon_tab-accordion.png"/>
+    <icon src="icons/18_widget_icon_tab-accordion.png"/>
+    <icon src="icons/32_widget_icon_tab-accordion.png"/>
+    <icon src="icons/64_widget_icon_tab-accordion.png"/>
     <icon src="icons/128_widget_icon_tab-accordion.png"/>
 </widget>
