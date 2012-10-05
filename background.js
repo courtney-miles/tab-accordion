@@ -20,6 +20,8 @@ opera.extension.tabs.oncreate = function(e) {
     // if the selected tab is the created tab, the tab is being opened in the foreground, so use the last selected tab
     if (sel.id == e.tab.id)
         sel = lastSelected; // lastSelected would need to be maintained elsewhere
-    if (sel.tabGroup)
+
+    try {
         sel.tabGroup.insert(e.tab);
+    } catch (f) {}
 }
