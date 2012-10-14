@@ -11,7 +11,7 @@ opera.extension.tabs.onfocus = function(e) {
           g.update({ collapsed: newState });
   });
   
-  lastSelected = selected;
+  lastSelected = opera.extension.tabs.getSelected();
 }
 
 opera.extension.tabs.oncreate = function(e) {
