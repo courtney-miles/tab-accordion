@@ -28,7 +28,7 @@ var tabAccordion = new function() {
             sel = this.prevFocusedTab;
 
         if (!!sel.tabGroup) {
-            sel.tabGroup.insert(e.tab);
+            sel.tabGroup.insert(tab);
         }
     }
 
@@ -38,13 +38,12 @@ var tabAccordion = new function() {
 opera.extension.tabs.onfocus = function(e) {
     tabAccordion.toggleExpansion(e.tab.tabGroup);
     tabAccordion.prevFocusedTab = e.tab;
-
-    console.log(widget.preferences['snapBackTab']);
-    console.log(widget.preferences.snapBackTab);
 }
 
 opera.extension.tabs.oncreate = function(e) {
-    tabAccordion.snapBack(e.tab);
+    if (widget.preferences['snapTab'] == '1') {
+        tabAccordion.snapBack(e.tab);
+    }
 }
 
 opera.extension.tabs.onmove = function(e) {
@@ -56,10 +55,10 @@ opera.extension.tabs.onmove = function(e) {
     }
 }
 
-opera.extension.tabs.onclose = function(e) {
-    //tabClosed.tabGroup.focus();
-    console.log(e);
-}
+//opera.extension.tabs.onclose = function(e) {
+//    //tabClosed.tabGroup.focus();
+//    console.dir(e);
+//}
 
 //opera.extension.tabGroups.oncreate = function (e) {
 //    e.tabGroup.update({collapsed : false});

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tab Accordion Settings</title>
+    <link rel="stylesheet" href="options.css" media="screen,projection,tv,handheld,print,speech" >
+</head>
+<body>
+<header><h1><img id="logo" src="icons/64_widget_icon_tab-accordion.png" width="64" height="64" alt="Extension Icon" /> Tab Accordion Settings</h1></header>
+<section>
+    <fieldset>
+        <dl>
+            <dt><label><input type="checkbox" name="snapTab" id="snapTab"> Keep new tabs within the group it was opened from</label></dt>
+            <dd>You may want to disable this if you also use other tab-managing extensions.</dd>
+        </dl>
+    </fieldset>
+</section>
+<script>
+    var snapTabField = document.getElementById('snapTab');
+
+    console.log(widget.preferences.snapTab);
+    if (widget.preferences.snapTab == 1) {
+        snapTabField.checked = true;
+    }
+
+    snapTabField.addEventListener('change',function(){
+        if (snapTabField.checked) {
+            widget.preferences.snapTab = 1;
+        } else {
+            widget.preferences.snapTab = 0;
+        }
+
+        console.log(widget.preferences.snapTab);
+    }, false);
+</script>
+</body>
+</html>

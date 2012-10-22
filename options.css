@@ -1,0 +1,60 @@
+html {
+    font: 13px/22px Arial, sans-serif;
+    background: -o-linear-gradient(top, rgba(187,202,215,1), rgba(187,202,215,0) 666px) #f8f8f8;
+    color: #525c66;
+    min-height: 100%;
+    voice-family: female;
+}
+
+html * {
+    font-size: 100%;
+    line-height: 1.55;
+}
+
+body {
+    max-width: 650px;
+    margin: 25px auto 10px auto;
+    padding: 40px;
+    border-width: 20px;
+    -o-border-image: url(images/container.png) 20  stretch;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+header {
+    margin-bottom:1.5em;
+}
+
+h1 {
+    margin: 0 0 0.1em 0;
+    line-height: 1;
+    font-size: 2.2em;
+    color: #ae4444;
+    text-shadow: 0 1px rgba(255,255,255,0.5);
+}
+
+#logo {
+    margin-right:0.25em;
+    margin-bottom: -15px;
+}
+
+fieldset {
+    border: 1px solid #CCC;
+    margin: 12px 0 12px 0;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+    width: 648px;
+    box-sizing: border-box;
+    clear: both;
+    padding: 1em;
+}
+
+fieldset dt label {
+    font-weight: bold;
+}
+
+fieldset dd {
+    margin:0;
+    font-style: italic;
+}
