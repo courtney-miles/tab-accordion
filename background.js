@@ -55,6 +55,12 @@ opera.extension.tabs.onmove = function(e) {
     }
 }
 
+opera.extension.windows.onfocus = function(e) {
+    var tab = opera.extension.tabs.getFocused();
+    tabAccordion.toggleExpansion(tab.tabGroup);
+    tabAccordion.prevFocusedTab = tab;
+}
+
 //opera.extension.tabs.onclose = function(e) {
 //    //tabClosed.tabGroup.focus();
 //    console.dir(e);
