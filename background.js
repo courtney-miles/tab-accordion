@@ -24,7 +24,7 @@ var tabAccordion = new function() {
         var sel = opera.extension.tabs.getSelected();
 
         // if the selected tab is the created tab, the tab is being opened in the foreground, so use the last selected tab
-        if (sel.id == tab.id)
+        if (tab.focused)
             sel = this.prevFocusedTab;
 
         if (!!sel.tabGroup) {
