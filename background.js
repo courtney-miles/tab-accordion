@@ -1,14 +1,17 @@
 var tabAccordion = new function() {
     this.prevFocusedTab = null;
-    this.focusedGroup = null;
 
     this.constructor = function() {
         this.prevFocusedTab = opera.extension.tabs.getFocused();
-        this.focusedGroup = opera.extension.tabs.getFocused().tabGroup;
-        this.toggleExpansion(this.focusedGroup);
+        this.toggleExpansion(this.prevFocusedTab);
     }
 
-    this.toggleExpansion = function(tabGroup) {
+    /**
+     * Expands the group a tab belongs to, and contracts all other groups.
+     * @param {tab} tab
+     */
+    this.toggleExpansion = function(tab) {
+        var tabGroup = tab;
         var groups = opera.extension.tabGroups.getAll();
 
         groups.forEach(function(g) {
@@ -20,6 +23,10 @@ var tabAccordion = new function() {
         });
     }
 
+    /**
+     * Snaps a newly created tab back to the parent it was created from.
+     * @param {tab} tab
+     */
     this.snapBack = function(tab) {
         var sel = opera.extension.tabs.getSelected();
 
@@ -36,7 +43,7 @@ var tabAccordion = new function() {
 }
 
 opera.extension.tabs.onfocus = function(e) {
-    tabAccordion.toggleExpansion(e.tab.tabGroup);
+    tabAccordion.toggleExpansion(e.tab);
     tabAccordion.prevFocusedTab = e.tab;
 }
 
@@ -49,23 +56,17 @@ opera.extension.tabs.oncreate = function(e) {
 opera.extension.tabs.onmove = function(e) {
     var tabMoved = e.tab;
     if (e.tab.focused) {
-        if (!!tabMoved.tagGroup) console.log(tabMoved.tabGroup.collapsed);
-        tabAccordion.toggleExpansion(tabMoved.tabGroup);
-        if (!!tabMoved.tagGroup) console.log(tabMoved.tabGroup.collapsed);
+        tabAccordion.toggleExpansion(tabMoved);
     }
 }
 
 opera.extension.windows.onfocus = function(e) {
-    var tab = opera.extension.tabs.getFocused();
-    tabAccordion.toggleExpansion(tab.tabGroup);
-    tabAccordion.prevFocusedTab = tab;
+    var tabFocused = e.browserWindow.tabs.getFocused();
+    tabAccordion.toggleExpansion(tabFocused);
+
+    // This helps when switching windows as well as when creating new
+    // windows to prevent tab in the new window from being sucked back
+    // into a group from the previous window.
+    tabAccordion.prevFocusedTab = tabFocused;
 }
 
-//opera.extension.tabs.onclose = function(e) {
-//    //tabClosed.tabGroup.focus();
-//    console.dir(e);
-//}
-
-//opera.extension.tabGroups.oncreate = function (e) {
-//    e.tabGroup.update({collapsed : false});
-//}
