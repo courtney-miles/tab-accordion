@@ -8,27 +8,48 @@
 <header><h1><img id="logo" src="icons/64_widget_icon_tab-accordion.png" width="64" height="64" alt="Extension Icon" /> Tab Accordion Settings</h1></header>
 <section>
     <fieldset>
+        <label>Snap new tabs</label>
+        <p>These settings force newly created tabs to be pulled back into the group they were created from.</p>
         <dl>
-            <dt><label><input type="checkbox" name="snapTab" id="snapTab"> Keep new tabs within the group it was opened from</label></dt>
-            <dd>You may want to disable this if you also use other tab-managing extensions.</dd>
+            <dt>
+                <label><input type="checkbox" name="snapForeTabs" id="snapForeTab"> Snap tabs created in the <em>foreground</em>.</label><br>
+                <label><input type="checkbox" name="snapBackTabs" id="snapBackTab"> Snap tabs created in the <em>background</em>.</label>
+            </dt>
+            <dd>You may want to disable these options if you also use other tab-managing extensions.</dd>
         </dl>
     </fieldset>
 </section>
 <script>
-    var snapTabField = document.getElementById('snapTab');
+    var snapForeTabField = document.getElementById('snapForeTab');
+    var snapBackTabField = document.getElementById('snapBackTab');
 
-    console.log(widget.preferences.snapTab);
-    if (widget.preferences.snapTab == 1) {
-        snapTabField.checked = true;
+    if (widget.preferences.snapTab & 1) {
+        snapForeTabField.checked = true;
     }
 
-    snapTabField.addEventListener('change',function(){
-        if (snapTabField.checked) {
-            widget.preferences.snapTab = 1;
+    if (widget.preferences.snapTab & 2) {
+        snapBackTabField.checked = true;
+    }
+
+    snapForeTabField.addEventListener('change', function(){
+        var mask = 1;
+
+        if (this.checked) {
+            widget.preferences.snapTab |= mask;
         } else {
-            widget.preferences.snapTab = 0;
+            widget.preferences.snapTab &= ~mask;
         }
     }, false);
+
+    snapBackTabField.addEventListener('change', function() {
+        var mask = 2;
+
+        if (this.checked) {
+            widget.preferences.snapTab |= mask;
+        } else {
+            widget.preferences.snapTab &= ~mask;
+        }
+    })
 </script>
 </body>
 </html>

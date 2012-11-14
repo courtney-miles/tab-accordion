@@ -11,7 +11,7 @@ var tabAccordion = new function() {
      * @param {tab} tab
      */
     this.toggleExpansion = function(tab) {
-        var tabGroup = tab;
+        var tabGroup = tab.tabGroup;
         var groups = opera.extension.tabGroups.getAll();
 
         groups.forEach(function(g) {
@@ -48,7 +48,13 @@ opera.extension.tabs.onfocus = function(e) {
 }
 
 opera.extension.tabs.oncreate = function(e) {
-    if (widget.preferences['snapTab'] == '1') {
+    var createMask = 1;
+
+    if (e.tab != opera.extension.tabs.getFocused()) {
+        createMask = 2;
+    }
+
+    if (widget.preferences['snapTab'] & createMask) {
         tabAccordion.snapBack(e.tab);
     }
 }
