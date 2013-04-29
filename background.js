@@ -36,6 +36,8 @@ var tabAccordion = new function() {
 
         if (!!sel.tabGroup) {
             sel.tabGroup.insert(tab);
+        } else if (widget.preferences['createGroup'] == 1) {
+            opera.extension.tabGroups.create([sel, tab], { collapsed: false }, sel);
         }
     }
 

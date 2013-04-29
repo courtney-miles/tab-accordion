@@ -13,7 +13,8 @@
         <dl>
             <dt>
                 <label><input type="checkbox" name="snapForeTabs" id="snapForeTab"> Snap tabs created in the <em>foreground</em>.</label><br>
-                <label><input type="checkbox" name="snapBackTabs" id="snapBackTab"> Snap tabs created in the <em>background</em>.</label>
+                <label><input type="checkbox" name="snapBackTabs" id="snapBackTab"> Snap tabs created in the <em>background</em>.</label><br>
+                <label><input type="checkbox" name="createNewGroup" id="createNewGroup"> Create new tab group if tabs don't belong to any tab groups.</label>
             </dt>
             <dd>You may want to disable these options if you also use other tab-managing extensions.</dd>
         </dl>
@@ -22,6 +23,7 @@
 <script>
     var snapForeTabField = document.getElementById('snapForeTab');
     var snapBackTabField = document.getElementById('snapBackTab');
+    var createNewGroupField = document.getElementById('createNewGroup');
 
     if (widget.preferences.snapTab & 1) {
         snapForeTabField.checked = true;
@@ -29,6 +31,10 @@
 
     if (widget.preferences.snapTab & 2) {
         snapBackTabField.checked = true;
+    }
+
+    if (widget.preferences.createGroup == 1) {
+        createNewGroupField.checked = true;
     }
 
     snapForeTabField.addEventListener('change', function(){
@@ -50,6 +56,14 @@
             widget.preferences.snapTab &= ~mask;
         }
     })
+
+    createNewGroupField.addEventListener('change', function() {
+        if (this.checked) {
+            widget.preferences.createGroup = 1;
+        } else {
+            widget.preferences.createGroup = 0;
+        }
+    });
 </script>
 </body>
 </html>
